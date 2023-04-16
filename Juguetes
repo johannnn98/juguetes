@@ -1,0 +1,30 @@
+<canvas id="myChart"></canvas>
+const ctx = document.getElementById('myChart').getContext('2d');
+
+const truckPositions = [];
+const carPositions = [];
+
+for (let t = 0; t <= 10; t++) {
+    const truckPos = 10 * t;
+    const carPos = 0.5 * 2.25 * Math.pow(t, 2);
+    truckPositions.push(truckPos);
+    carPositions.push(carPos);
+}
+
+const chart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: Array.from({length: 11}, (_, i) => i),
+        datasets: [{
+            label: 'Truck position',
+            data: truckPositions,
+            borderColor: 'blue',
+            fill: false
+        }, {
+            label: 'Car position',
+            data: carPositions,
+            borderColor: 'red',
+            fill: false
+        }]
+    }
+});
